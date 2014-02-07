@@ -1,0 +1,34 @@
+-# app/views/roles/show.html.haml
+
+%h1
+  = @role.title
+  at
+  = @role.company
+
+%p
+  = link_to "Edit Role", edit_role_path(@role)
+  |
+  = link_to "Delete Role", @role, :method => :delete
+
+
+%p
+  %strong URL:
+  - if @role.url.blank?
+    (none)
+  - else
+    = link_to @role.url
+
+%p
+  %strong Date Submitted:
+  - if @role.date_submitted.blank?
+    (none)
+  - else
+    = I18n.l @role.date_submitted
+
+%p
+  %strong Notes:
+  %br
+  = @role.notes
+
+%p
+  = link_to "Back to Roles", roles_path

@@ -2,6 +2,8 @@
 
 %h1 Roles
 
+%p= link_to "New Role", new_role_path
+
 %table
   %thead
     %tr
@@ -13,5 +15,5 @@
         %td{ :colspan => 2 } There are no roles to view.
     - @roles.each do |role|
       %tr
-        %td= role.company
-        %td= role.title
+        %td= link_to role.company, role
+        %td= link_to role.title, role
