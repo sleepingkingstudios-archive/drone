@@ -53,7 +53,10 @@ class RolesController < ApplicationController
   end # method load_resource
 
   def load_resources
-    @roles = Role.all
+    sort_field     = params.fetch(:sort_field, 'date_submitted')
+    sort_direction = params.fetch(:sort_direction, :asc)
+
+    @roles = Role.order_by(sort_field => sort_direction)
   end # method load_resources
 
   def process_date! hsh

@@ -10,20 +10,19 @@
   |
   = link_to "Delete Role", @role, :method => :delete
 
-
-%p
-  %strong URL:
-  - if @role.url.blank?
-    (none)
-  - else
-    = link_to @role.url
-
 %p
   %strong Date Submitted:
   - if @role.date_submitted.blank?
     (none)
   - else
     = I18n.l @role.date_submitted
+
+%p
+  %strong URL:
+  - if @role.url.blank?
+    (none)
+  - else
+    = link_to @role.url, @role.url, :target => '_blank'
 
 %p
   %strong Notes:
