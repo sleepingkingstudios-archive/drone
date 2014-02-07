@@ -10,6 +10,10 @@ RSpec.describe Role do
     it { expect(instance).to have_property(:company) }
   end # describe
 
+  describe '#date_submitted' do
+    it { expect(instance).to have_property(:date_submitted) }
+  end # describe
+
   describe '#notes' do
     it { expect(instance).to have_property(:notes) }
   end # describe
