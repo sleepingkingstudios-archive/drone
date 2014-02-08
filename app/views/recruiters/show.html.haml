@@ -1,0 +1,25 @@
+-# app/views/recruiters/show.html.haml
+
+%h1= @recruiter.name
+
+%p
+  = link_to "Edit Recruiter", edit_recruiter_path(@recruiter)
+  |
+  = link_to "Delete Recruiter", @recruiter, :method => :delete
+
+%p
+  %strong Agency:
+  - if @recruiter.agency.blank?
+    (none)
+  - else
+    = @recruiter.agency
+
+%p
+  %strong Email:
+  = @recruiter.email
+
+%p
+  %strong Phone Number:
+  = @recruiter.phone_number
+
+%p= link_to "Back to Recruiters", recruiters_path

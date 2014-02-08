@@ -2,6 +2,7 @@
 
 class RecruitersController < ApplicationController
   before_action :build_resource, :only => %i(new create)
+  before_action :load_resource,  :only => %i(show)
   before_action :load_resources, :only => %i(index)
 
   # POST /recruiters
@@ -19,11 +20,18 @@ class RecruitersController < ApplicationController
   # GET /recruiters/new
   def new; end
 
+  # GET /recruiters/:id
+  def show; end
+
   private
 
   def build_resource
     @recruiter = Recruiter.new recruiter_params
   end # method build_resource
+
+  def load_resource
+    @recruiter = Recruiter.find(params[:id])
+  end # method load_resource
 
   def load_resources
     @recruiters = Recruiter.all

@@ -57,4 +57,15 @@ RSpec.describe RecruitersController do
       end # it
     end # context
   end # describe
+
+  describe '#show' do
+    let(:params)     { { :id => recruiter.id } }
+    let!(:recruiter) { FactoryGirl.create :recruiter }
+
+    it 'responds with 200 ok and renders the show template' do
+      get :show, params
+      expect(response.status).to be == 200
+      expect(response).to render_template 'show'
+    end # it
+  end # describe
 end # describe
