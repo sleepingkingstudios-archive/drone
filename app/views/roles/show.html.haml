@@ -25,6 +25,14 @@
     = link_to @role.url, @role.url, :target => '_blank'
 
 %p
+  %strong Recruiter:
+  - unless @role.recruiter.blank?
+    = link_to(@role.recruiter.name, @role.recruiter)
+    - unless @role.recruiter.agency.blank?
+      at
+      = @role.recruiter.agency
+
+%p
   %strong Notes:
   %br
   = @role.notes

@@ -8,5 +8,7 @@ class Recruiter
   field :name,         :type => String
   field :phone_number, :type => String
 
+  has_many :roles
+
   validates :name, :presence => true
 end # class

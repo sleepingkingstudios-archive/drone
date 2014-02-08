@@ -16,12 +16,16 @@
       %td Company
       %td Title
       %td Date Submitted
+      %td Recruiter
+      %td Agency
   %tbody
     - if @roles.blank?
       %tr
-        %td{ :colspan => 3 } There are no roles to view.
+        %td{ :colspan => 5 } There are no roles to view.
     - @roles.each do |role|
       %tr
         %td= link_to role.company, role
         %td= link_to role.title, role
         %td= I18n.l role.date_submitted
+        %td= role.recruiter ? link_to(role.recruiter.name, role.recruiter) : ''
+        %td= role.recruiter ? role.recruiter.agency : ''

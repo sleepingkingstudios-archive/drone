@@ -1,9 +1,10 @@
 # app/controllers/roles_controller.rb
 
 class RolesController < ApplicationController
-  before_action :build_resource, :only => %i(new create)
-  before_action :load_resource,  :only => %i(show edit update destroy)
-  before_action :load_resources, :only => %i(index)
+  before_action :build_resource,    :only => %i(new create)
+  before_action :load_associations, :only => %i(new edit)
+  before_action :load_resource,     :only => %i(show edit update destroy)
+  before_action :load_resources,    :only => %i(index)
 
   # POST /roles
   def create
@@ -48,6 +49,10 @@ class RolesController < ApplicationController
     @role = Role.new role_params
   end # method build_resource
 
+  def load_associations
+    @recruiters = Recruiter.order_by(:name => :asc)
+  end # method load_associations
+
   def load_resource
     @role = Role.find params[:id]
   end # method load_resource
@@ -69,7 +74,7 @@ class RolesController < ApplicationController
   end # process_date!
 
   def role_params
-    hsh = params.fetch(:role, {}).permit(:company, :title, :date_submitted, :url, :notes)
+    hsh = params.fetch(:role, {}).permit(:company, :title, :date_submitted, :url, :notes, :recruiter_id)
     process_date!(hsh)
   end # method role_params
 end # class

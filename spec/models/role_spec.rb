@@ -26,6 +26,20 @@ RSpec.describe Role do
     it { expect(instance).to have_property(:url) }
   end # describe
 
+  describe '#recruiter' do
+    it { expect(instance).to respond_to(:recruiter) }
+    it { expect(instance.recruiter).to be nil }
+
+    context 'with a recruiter' do
+      let(:attributes) { super().merge :recruiter => recruiter }
+      let(:recruiter)  { FactoryGirl.create :recruiter }
+
+      it 'returns the recruiter' do
+        expect(instance.recruiter).to be == recruiter
+      end # it
+    end # context
+  end # describe
+
   describe 'validation' do
     it { expect(instance).to be_valid }
 

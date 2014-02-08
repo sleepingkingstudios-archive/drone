@@ -10,6 +10,10 @@
     = form.text_field :title
 
   %p
+    = form.label :recruiter
+    = form.select :recruiter_id, options_from_collection_for_select(@recruiters, :id, :name), :prompt => ''
+
+  %p
     = form.label :url
     = form.text_field :url
 

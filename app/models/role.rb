@@ -9,6 +9,8 @@ class Role
   field :title,          :type => String
   field :url,            :type => String
 
+  belongs_to :recruiter
+
   validates :company, :presence => true
   validates :title, :presence => true
 end # class
