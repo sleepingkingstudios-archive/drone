@@ -9,4 +9,9 @@
     = csrf_meta_tags
 
   %body
+    %p
+      = link_to "Roles", roles_path
+      |
+      = link_to "Recruiters", recruiters_path
+
     = yield

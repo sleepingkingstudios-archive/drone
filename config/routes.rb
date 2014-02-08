@@ -3,5 +3,5 @@
 Drone::Application.routes.draw do
   root :to => redirect('/roles')
 
-  resources :roles
+  resources :recruiters, :roles
 end # routes

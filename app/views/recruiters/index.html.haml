@@ -1,0 +1,23 @@
+-# app/views/recruiters/index.html.haml
+
+%h1 Recruiters
+
+%p= link_to "New Recruiter", new_recruiter_path
+
+%table
+  %thead
+    %tr
+      %td Name
+      %td Agency
+      %td Email
+      %td Phone Number
+  %tbody
+    - if @recruiters.blank?
+      %tr
+        %td{ :colspan => 4 } There are no recruiters to view.
+    - @recruiters.each do |recruiter|
+      %tr
+        %td= link_to recruiter.name, recruiter
+        %td= recruiter.agency
+        %td= recruiter.email
+        %td= recruiter.phone_number
