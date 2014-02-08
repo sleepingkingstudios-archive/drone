@@ -2,7 +2,7 @@
 
 class RecruitersController < ApplicationController
   before_action :build_resource, :only => %i(new create)
-  before_action :load_resource,  :only => %i(show)
+  before_action :load_resource,  :only => %i(show edit)
   before_action :load_resources, :only => %i(index)
 
   # POST /recruiters
@@ -13,6 +13,9 @@ class RecruitersController < ApplicationController
       render :new
     end # if-else
   end # action create
+
+  # GET /recruiters/:id/edit
+  def edit; end
 
   # GET /recruiters
   def index; end
