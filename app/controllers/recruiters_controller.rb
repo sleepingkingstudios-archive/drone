@@ -2,7 +2,7 @@
 
 class RecruitersController < ApplicationController
   before_action :build_resource, :only => %i(new create)
-  before_action :load_resource,  :only => %i(show edit)
+  before_action :load_resource,  :only => %i(show edit update)
   before_action :load_resources, :only => %i(index)
 
   # POST /recruiters
@@ -25,6 +25,15 @@ class RecruitersController < ApplicationController
 
   # GET /recruiters/:id
   def show; end
+
+  # PATCH /recruiters/:id
+  def update
+    if @recruiter.update_attributes recruiter_params
+      redirect_to @recruiter
+    else
+      render :edit
+    end # if-else
+  end # action patch
 
   private
 

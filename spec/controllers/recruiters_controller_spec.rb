@@ -79,4 +79,53 @@ RSpec.describe RecruitersController do
       expect(response).to render_template 'edit'
     end # it
   end # describe
+
+  describe '#update' do
+    let(:params) { { :id => recruiter.id } }
+    let!(:recruiter) { FactoryGirl.create :recruiter }
+
+    context 'with invalid attributes' do
+      let(:attributes) { { :name => nil } }
+      let(:params) { super().merge :recruiter => attributes }
+
+      def perform_action
+        patch :update, params
+      end # method perform_action
+
+      it 'responds with 200 ok and renders the edit template' do
+        perform_action
+        expect(response.status).to be == 200
+        expect(response).to render_template 'edit'
+      end # it
+
+      it 'does not update the persisted recruiter' do
+        expect {
+          perform_action
+          recruiter.reload
+        }.not_to change(recruiter, :name)
+      end # it
+    end # context
+
+    context 'with valid attributes' do
+      let(:attributes) { { :name => 'Jane Doe' } }
+      let(:params) { super().merge :recruiter => attributes }
+
+      def perform_action
+        patch :update, params
+      end # method perform_action
+
+      it 'redirects to show' do
+        perform_action
+        expect(response.status).to be == 302
+        expect(response).to redirect_to recruiter_path(recruiter)
+      end # it
+
+      it 'updates the persisted recruiter' do
+        expect {
+          perform_action
+          recruiter.reload
+        }.to change(recruiter, :name).to(attributes[:name])
+      end # it
+    end # context
+  end # describe
 end # describe
