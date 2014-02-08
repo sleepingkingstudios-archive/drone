@@ -1,8 +1,17 @@
 # app/controllers/recruiters_controller.rb
 
 class RecruitersController < ApplicationController
-  before_action :build_resource, :only => %i(new)
+  before_action :build_resource, :only => %i(new create)
   before_action :load_resources, :only => %i(index)
+
+  # POST /recruiters
+  def create
+    if @recruiter.save
+      redirect_to @recruiter
+    else
+      render :new
+    end # if-else
+  end # action create
 
   # GET /recruiters
   def index; end
