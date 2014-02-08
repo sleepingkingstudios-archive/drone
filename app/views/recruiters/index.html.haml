@@ -4,6 +4,12 @@
 
 %p= link_to "New Recruiter", new_recruiter_path
 
+= form_tag recruiters_path, :id => 'sort-recruiters', :method => :get do
+  %p
+    %strong Sort By:
+    = select_tag :sort_field, options_for_select([['Name', :name], ['Agency', :agency]], params[:sort_field])
+    = select_tag :sort_direction, options_for_select([['Asc', :asc], ['Desc', :desc]], params[:sort_direction])
+
 %table
   %thead
     %tr

@@ -52,7 +52,10 @@ class RecruitersController < ApplicationController
   end # method load_resource
 
   def load_resources
-    @recruiters = Recruiter.all
+    sort_field     = params.fetch(:sort_field, 'name')
+    sort_direction = params.fetch(:sort_direction, :asc)
+
+    @recruiters = Recruiter.order_by(sort_field => sort_direction)
   end # method load_resources
 
   def recruiter_params
