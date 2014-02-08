@@ -2,7 +2,7 @@
 
 class RecruitersController < ApplicationController
   before_action :build_resource, :only => %i(new create)
-  before_action :load_resource,  :only => %i(show edit update)
+  before_action :load_resource,  :only => %i(show edit update destroy)
   before_action :load_resources, :only => %i(index)
 
   # POST /recruiters
@@ -13,6 +13,12 @@ class RecruitersController < ApplicationController
       render :new
     end # if-else
   end # action create
+
+  # DELETE /recruiters/:id
+  def destroy
+    @recruiter.destroy
+    redirect_to recruiters_path
+  end # action destroy
 
   # GET /recruiters/:id/edit
   def edit; end

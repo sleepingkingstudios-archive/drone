@@ -128,4 +128,23 @@ RSpec.describe RecruitersController do
       end # it
     end # context
   end # describe
+
+  describe '#destroy' do
+    let(:params) { { :id => recruiter.id } }
+    let!(:recruiter) { FactoryGirl.create :recruiter }
+
+    def perform_action
+      delete :destroy, params
+    end # method perform_action
+
+    it 'redirects to index' do
+      perform_action
+      expect(response.status).to be == 302
+      expect(response).to redirect_to recruiters_path
+    end # it
+
+    it 'destroys the recruiter' do
+      expect { perform_action }.to change(Recruiter, :count).to(0)
+    end # it
+  end # describe
 end # describe
