@@ -6,10 +6,8 @@ gem 'rails', '4.0.2'
 # gem 'unicorn'
 
 ### Datastore ###
-gem 'mongoid',  '4.0.0.beta1', github: 'mongoid/mongoid', :tag => 'v4.0.0.beta1'
+gem 'pg'
 gem 'devise',   '~> 3.2.2'
-
-gem 'mongoid-sleeping_king_studios', '~> 0.7', '>= 0.7.8'
 
 ### Assets ###
 gem 'haml-rails',        '~> 0.4'

@@ -1,13 +1,11 @@
 # app/models/role.rb
 
-class Role
-  include Mongoid::Document
-
-  field :company,        :type => String
-  field :date_submitted, :type => Date
-  field :notes,          :type => String
-  field :title,          :type => String
-  field :url,            :type => String
+class Role < ActiveRecord::Base
+  # field :company,        :type => String
+  # field :date_submitted, :type => Date
+  # field :notes,          :type => String
+  # field :title,          :type => String
+  # field :url,            :type => String
 
   belongs_to :recruiter
 
