@@ -50,7 +50,7 @@ class RolesController < ApplicationController
   end # method build_resource
 
   def load_associations
-    @recruiters = Recruiter.order_by(:name => :asc)
+    @recruiters = Recruiter.order(:name => :asc)
   end # method load_associations
 
   def load_resource
@@ -59,9 +59,10 @@ class RolesController < ApplicationController
 
   def load_resources
     sort_field     = params.fetch(:sort_field, 'date_submitted')
-    sort_direction = params.fetch(:sort_direction, :asc)
+    sort_direction = params.fetch(:sort_direction, 'asc').intern
+    sort_direction = :asc unless %i(asc desc).include?(sort_direction)
 
-    @roles = Role.order_by(sort_field => sort_direction)
+    @roles = Role.order(sort_field => sort_direction)
   end # method load_resources
 
   def process_date! hsh

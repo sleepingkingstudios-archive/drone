@@ -53,9 +53,10 @@ class RecruitersController < ApplicationController
 
   def load_resources
     sort_field     = params.fetch(:sort_field, 'name')
-    sort_direction = params.fetch(:sort_direction, :asc)
+    sort_direction = params.fetch(:sort_direction, 'asc').intern
+    sort_direction = :asc unless %i(asc desc).include?(sort_direction)
 
-    @recruiters = Recruiter.order_by(sort_field => sort_direction)
+    @recruiters = Recruiter.order(sort_field => sort_direction)
   end # method load_resources
 
   def recruiter_params

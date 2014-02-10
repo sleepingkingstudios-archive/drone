@@ -1,0 +1,15 @@
+# config/database.yml
+
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: drone_development
+  pool: 5
+  username: drone
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: drone_test
+  pool: 5
+  username: drone
